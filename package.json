@@ -1,6 +1,6 @@
 {
   "name": "react-types",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "React.PropTypes with less suck",
   "main": "index.js",
   "scripts": {

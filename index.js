@@ -1,18 +1,17 @@
 
-function typePropMap(React) {
-  return {
-    'any':      React.PropTypes.any,
-    'array':    React.PropTypes.array,
-    'string':   React.PropTypes.string,
-    'number':   React.PropTypes.number,
-    'object':   React.PropTypes.array,
-    'boolean':  React.PropTypes.bool,
-    'function': React.PropTypes.func,
+var React = require('react');
 
-    'node':     React.PropTypes.node,
-    'element':  React.PropTypes.element
-  };
-}
+var typePropMap = {
+  'any':      React.PropTypes.any,
+  'array':    React.PropTypes.array,
+  'string':   React.PropTypes.string,
+  'number':   React.PropTypes.number,
+  'object':   React.PropTypes.object,
+  'boolean':  React.PropTypes.bool,
+  'function': React.PropTypes.func,
+  'node':     React.PropTypes.node,
+  'element':  React.PropTypes.element
+};
 
 function getFunctionName(fn) {
   if (fn.name) return fn.name;
@@ -59,15 +58,13 @@ function optional(prop) {
   return prop;
 }
 
-module.exports = function ReactTypes(React, options) {
+function ReactTypes(options) {
   options = options || {};
   options.required = options.required || true;
 
-  var nameTypeMap = typePropMap(React);
-
   function getPropType(type) {
     function map(key) {
-      return nameTypeMap[key];
+      return typePropMap[key];
     }
 
     if(typeof type === 'string') return map(type.toLowerCase());
@@ -77,7 +74,8 @@ module.exports = function ReactTypes(React, options) {
       }
       return map('array');
     }
-    return map(getFunctionName(type.constructor).toLowerCase());
+    var name = getFunctionName(type).toLowerCase();
+    return map(name);
   }
 
   function parseProp(prop) {
@@ -119,12 +117,16 @@ module.exports = function ReactTypes(React, options) {
     return result;
   }
 
-  mapper.Instance = Instance;
-  mapper.Enum = Enum;
-  mapper.Union = Union;
-  mapper.Shape = Shape;
-  mapper.optional = optional;
-  mapper.raw = raw;
   return mapper;
 }
+
+module.exports = ReactTypes();
+module.exports.Types = ReactTypes;
+
+module.exports.Instance = Instance;
+module.exports.Enum = Enum;
+module.exports.Union = Union;
+module.exports.Shape = Shape;
+module.exports.optional = optional;
+module.exports.raw = raw;
 

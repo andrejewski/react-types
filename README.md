@@ -27,7 +27,7 @@ var MyComponent = React.createClass({
 You can write this:
 
 ```js
-var types = require('react-types')(React);
+var types = require('react-types');
 var Shape = types.Shape;
 
 MyComponent = React.createClass({
@@ -48,10 +48,6 @@ But of course it's your choice which you would prefer to type.
 
 ## FAQ
 
-### Why does React need to be injected into React Types?
-
-Because I am lazy. React moves at a very fast pace and breaks old stuff to make room for awesome. Instead of this project always having to play catch up with updates, deal with version conflicts, or worry about bundling different React versions (it bites a lot of people), React Types just uses what you are using. The good thing is that PropTypes is a pretty stable API of React so we are pretty safe for now.
-
 ### Prop types: optional versus required?
 
 React makes all propTypes optional by default, which I think is a bad choice. Props are going to be passed to the component whether or not they are specified so everything is optional by default. If I go to the trouble of writing out the propType for a member, it better dam be there. 
@@ -60,7 +56,7 @@ So, React Types are required by default. However this can be overridden when req
 
 ```js
 // global required option
-var types = require('react-types')(React, {required: false});
+var types = require('react-types').Types({required: false});
 
 // prop-by-prop basis
 var MyComponent = react.createClass({
@@ -76,8 +72,8 @@ var MyComponent = react.createClass({
 
 PropTypes has been around way longer than React Types. People have built validation on top of it and have already written their types longhand. To accommodate this situation, React Types allows PropTypes to be placed into it using `types.raw(propType)`. Examples are best:
 
-```
-var types = require('react-types')(React);
+```js
+var types = require('react-types');
 
 var MyComponent = React.createClass({
   propTypes: types({
@@ -90,8 +86,7 @@ var MyComponent = React.createClass({
 ### What else ya got? (Related projects)
 
 - [Reactbone](https://github.com/andrejewski/reactbone): React extensions for Backbone
-
-- [Even More Flux (EMF)](https://github.com/andrejewski/emf) Class extensions and integrations for Flux
+- [Even More Flux (EMF)](https://github.com/andrejewski/emf): Class extensions and integrations for Flux
 
 ## Contributing
 
@@ -99,5 +94,5 @@ We can always have more tests: if you find a bug, create an issue or be **fabulo
 
 Run tests with the `npm test` command.
 
-Follow me on [Twitter](https://twitter.com/ndrejewski) for updates or just for the lolz and please check out my other [repositories](https://github.com/andrejewski) if I have earned it. I thank you for reading.
+Follow me on [Twitter](http://chrisandrejewski.com/twitter) for updates or just for the lolz and please check out my other [repositories](https://github.com/andrejewski) if I have earned it. I thank you for reading.
  
