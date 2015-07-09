@@ -42,7 +42,7 @@ MyComponent = React.createClass({
 });
 ```
 
-There is a more feature-packed [comparison](https://raw.github.com/andrejewski/color-me-shocked/master/comparison.js) available.
+There is a more feature-packed [comparison](https://github.com/andrejewski/react-types/blob/master/comparison.js) available to see how everything stacks up against regular PropTypes.
 
 But of course it's your choice which you would prefer to type.
 
@@ -59,7 +59,7 @@ So, React Types are required by default. However this can be overridden when req
 var types = require('react-types').Types({required: false});
 
 // prop-by-prop basis
-var MyComponent = react.createClass({
+var MyComponent = React.createClass({
   propTypes: types({
     name: String, // required
     bio: {type: String, required: false}, // optional

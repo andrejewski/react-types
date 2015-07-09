@@ -11,11 +11,11 @@
 */
 
 var React = require('react');
-var types = require('react-types')(React);
+var types = require('react-types');
 
 var Message = null; // some unknown class
 
-React.createClass({
+var MyComponent = React.createClass({
   propTypes: {
     
     // React uses optional everywhere,
